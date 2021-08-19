@@ -3475,6 +3475,16 @@ func (f *Fpdf) Output(w io.Writer) error {
 	return f.err
 }
 
+func (f *Fpdf) OutputToBuffer() bytes.Buffer {
+	if f.err != nil {
+		//return f.err
+	}
+	if f.state < 3 {
+		f.Close()
+	}
+	return f.buffer.Buffer
+}
+
 func (f *Fpdf) getpagesizestr(sizeStr string) (size SizeType) {
 	if f.err != nil {
 		return
